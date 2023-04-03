@@ -5,6 +5,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PlaylistController;
 use App\Http\Controllers\SyncController;
 use App\Http\Controllers\TransferController;
+use App\Http\Controllers\YouTubeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,7 +31,7 @@ Route::controller(PlaylistController::class)->group(function () {
     Route::get('playlists/{service}/{id}', 'showPlaylist')->name('playlists.songs');
 });
 
-Route::get('/videos', [App\Http\Controllers\YoutubeController::class, 'crearPlaylist']);
+Route::get('/search', [YouTubeController::class, 'searchVideos'])->name('search');
 
 
 
