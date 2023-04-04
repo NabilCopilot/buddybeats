@@ -6,6 +6,7 @@ use App\Http\Controllers\PlaylistController;
 use App\Http\Controllers\SyncController;
 use App\Http\Controllers\TransferController;
 use App\Http\Controllers\YouTubeController;
+use App\Http\Controllers\GoogleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,6 +34,8 @@ Route::controller(PlaylistController::class)->group(function () {
 
 Route::get('/search', [YouTubeController::class, 'searchVideos'])->name('search');
 
+Route::get('/google/redirect', [GoogleController::class, 'redirectToGoogle'])->name('google.redirect');
+Route::get('/google/callback', [GoogleController::class, 'handleGoogleCallback'])->name('google.callback');
 
 
 
