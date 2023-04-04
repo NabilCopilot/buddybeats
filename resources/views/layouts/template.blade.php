@@ -76,7 +76,7 @@
                     <img class="icon" src="{{ asset('assets/images/deezer_logo.png') }}">
                     <span class="link-name">Deezer</span>
                 </a></li>
-                <li><a href="{{ route('playlists.service', ['service' => 'youtube']) }}">
+                <li><a href="{{ route('youtube.auth')}}">
                     <img class="icon" src="{{ asset('assets/images/youtube_logo.png') }}">
                     <span class="link-name">YouTube</span>
                 </a></li>

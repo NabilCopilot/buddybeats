@@ -31,7 +31,12 @@ Route::controller(PlaylistController::class)->group(function () {
     Route::get('playlists/{service}/{id}', 'showPlaylist')->name('playlists.songs');
 });
 
-Route::get('/search', [YouTubeController::class, 'searchVideos'])->name('search');
+Route::get('/youtube/auth', [YouTubeController::class, 'auth'])->name('youtube.auth');
+Route::get('/youtube/callback', [YouTubeController::class, 'callback'])->name('youtube.callback');
+Route::get('/youtube/playlists', [YouTubeController::class, 'getPlaylists'])->name('youtube.playlists');
+Route::get('/youtube/playlist/{id}', [YouTubeController::class, 'getPlaylistVideos']);
+
+
 
 
 
