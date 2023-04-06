@@ -66,19 +66,34 @@ class YouTubeController extends Controller
     }
 
     public function getPlaylistVideos($id)
-{
-    $this->client->setAccessToken(session('youtube_access_token'));
-    $youtube = new Google_Service_YouTube($this->client);
-
-    $queryParams = [
-        'maxResults' => 50,
-        'playlistId' => $id,
-    ];
-
-    $playlistItems = $youtube->playlistItems->listPlaylistItems('snippet,contentDetails', $queryParams);
-
-    return view('youtube.songs', compact('playlistItems'));
-}
-
+    {
+        $this->client->setAccessToken(session('youtube_access_token'));
+        $youtube = new Google_Service_YouTube($this->client);
+    
+        $queryParams = [
+            'maxResults' => 50,
+            'playlistId' => $id,
+        ];
+    
+        $playlistItems = $youtube->playlistItems->listPlaylistItems('snippet,contentDetails', $queryParams);
+    
+        $videoIds = [];
+        foreach ($playlistItems->getItems() as $item) {
+            $videoIds[] = $item->getContentDetails()->getVideoId();
+        }
+    
+        $videoDetailsResponse = [];
+        if (count($videoIds) > 0) {
+            $videoDetailsResponse = $youtube->videos->listVideos('snippet, contentDetails', ['id' => implode(',', $videoIds)]);
+        }
+    
+        $videoDetails = [];
+        foreach ($videoDetailsResponse->getItems() as $videoDetail) {
+            $videoDetails[$videoDetail->getId()] = $videoDetail;
+        }
+    
+        return view('youtube.songs', compact('playlistItems', 'videoDetails'));
+    }
+    
 
 }

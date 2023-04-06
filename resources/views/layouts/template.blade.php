@@ -55,31 +55,35 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{ route('playlists.service', ['service' => 'spotify']) }}">
+                    <a href="{{ route('spotify.auth') }}">
                         <img class="icon" src="{{ asset('assets/images/spotify_logo.png') }}">
                         <span class="link-name">Spotify</span>
                     </a>
                 </li>
-                <li><a href="{{ route('playlists.service', ['service' => 'ytmusic']) }}">
-                    <img class="icon" src="{{ asset('assets/images/youtube_music_logo.png') }}">
-                    <span class="link-name">YouTube Music</span>
-                </a></li>
-                <li><a href="{{ route('playlists.service', ['service' => 'applemusic']) }}">
-                    <img class="icon" src="{{ asset('assets/images/apple_music_logo.png') }}">
-                    <span class="link-name">Apple Music</span>
-                </a></li>
-                <li><a href="{{ route('playlists.service', ['service' => 'tidal']) }}">
-                    <img class="icon" src="{{ asset('assets/images/tidal_logo.png') }}">
-                    <span class="link-name">TIDAL</span>
-                </a></li>
-                <li><a href="{{ route('playlists.service', ['service' => 'deezer']) }}">
-                    <img class="icon" src="{{ asset('assets/images/deezer_logo.png') }}">
-                    <span class="link-name">Deezer</span>
-                </a></li>
-                <li><a href="{{ route('youtube.auth')}}">
-                    <img class="icon" src="{{ asset('assets/images/youtube_logo.png') }}">
-                    <span class="link-name">YouTube</span>
-                </a></li>
+                <li>
+                    <a href="{{ route('youtube.auth')}}">
+                        <img class="icon" src="{{ asset('assets/images/youtube_logo.png') }}">
+                        <span class="link-name">YouTube</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('playlists.service', ['service' => 'applemusic']) }}">
+                        <img class="icon" src="{{ asset('assets/images/apple_music_logo.png') }}">
+                        <span class="link-name">Apple Music</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('playlists.service', ['service' => 'tidal']) }}">
+                        <img class="icon" src="{{ asset('assets/images/tidal_logo.png') }}">
+                        <span class="link-name">TIDAL</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('playlists.service', ['service' => 'deezer']) }}">
+                        <img class="icon" src="{{ asset('assets/images/deezer_logo.png') }}">
+                        <span class="link-name">Deezer</span>
+                    </a>
+                </li>
             </ul>
             
             <ul class="logout-mode">

@@ -4,8 +4,11 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PlaylistController;
 use App\Http\Controllers\SyncController;
+
 use App\Http\Controllers\TransferController;
 use App\Http\Controllers\YouTubeController;
+use App\Http\Controllers\SpotifyController;
+use App\Http\Controllers\SpotifyAuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,6 +39,10 @@ Route::get('/youtube/callback', [YouTubeController::class, 'callback'])->name('y
 Route::get('/youtube/playlists', [YouTubeController::class, 'getPlaylists'])->name('youtube.playlists');
 Route::get('/youtube/playlist/{id}', [YouTubeController::class, 'getPlaylistVideos']);
 
+Route::get('/spotify/auth', [SpotifyAuthController::class, 'redirectToProvider'])->name('spotify.auth');
+Route::get('/spotify/callback', [SpotifyAuthController::class, 'handleProviderCallback'])->name('spotify.callback');
+Route::get('/spotify/playlists', [SpotifyController::class, 'showPlaylists'])->name('spotify.playlists');
+Route::get('/spotify/playlists/{id}', [SpotifyController::class, 'showPlaylistTracks'])->name('spotify.tracks');
 
 
 
