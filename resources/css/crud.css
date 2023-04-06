@@ -94,10 +94,12 @@ nav .logo-image img{
 }
 
 nav .logo-name .logo_name{
-    font-size: 22px;
-    font-weight: 600;
-    color: var(--text-color);
-    margin-left: 14px;
+    font-family: 'Permanent Marker', cursive;
+    font-size: 28px;
+    font-weight: bold;
+    text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.3);
+    color: var(--primary-color);
+    margin-top: 10px;
     transition: var(--tran-05);
 }
 nav.close .logo_name{

@@ -4,22 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" type="image/x-icon">
     <title>BuddyBeats</title>
-    <!--
-    <link rel="stylesheet" href="/assets/css/demo.css">
-    -->
-    <!----===== Boxicons CSS ===== -->
+    
     <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+    <script src="https://kit.fontawesome.com/b58bf2b7cf.js" crossorigin="anonymous"></script>
+
     @vite([
-        //'resources/css/aside_bar.css', 
-        //'resources/js/aside_bar.js', 
-        //'resources/css/nav_bar.css', 
-        //'resources/js/nav_bar.js', 
-        //'resources/css/app.css',
-        //'resources/js/app.js',
         'resources/css/crud.css',
         'resources/js/crud.js',
+        'resources/css/playlistTable.css',
     ])
 </head>
 <body>
@@ -29,7 +25,7 @@
                 <!--<img src="images/logo.png" alt="">-->
             </div>
 
-            <span class="logo_name">CodingLab</span>
+            <h1 class="logo_name">BuddyBeats</h1>
         </div>
 
         <div class="menu-items">
@@ -117,12 +113,11 @@
             
             <!--<img src="images/profile.jpg" alt="">-->
         </div>
-        {{-- todo esto deberia cambiar segun la ruta --}}
-            {{-- <div class="text">Dashboard Sidebar</div> --}}
-        @yield('content')     <!--EL campo de la plantilla que rellenare desde la vista-->
+        
+        {{-- <div class="text">Dashboard Sidebar</div> --}}
+        <div class="dash-content">
+            @yield('content')
+        </div>
     </section>
 </body>
-    <!--
-    <script src="/assets/js/demo.js"></script>
-    -->
 </html>

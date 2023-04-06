@@ -23,17 +23,22 @@ class SpotifyController extends Controller
 
         $playlists = $spotifyService->getUserPlaylists();
 
+        session(['playlists' => $playlists]);
+
         return view('spotify.playlists', ['playlists' => $playlists]);
     }
 
     public function showPlaylistTracks(Request $request, $id)
     {
+        $playlists = session('playlists');
+        $playlist = collect($playlists)->firstWhere('id', $id);
+
         $accessToken = session('spotify_access_token');
         $spotifyService = new SpotifyService($accessToken);
 
         $tracks = $spotifyService->getPlaylistTracks($id);
 
-        return view('spotify.songs', ['tracks' => $tracks]);
+        return view('spotify.songs', ['tracks' => $tracks, 'playlist' => $playlist]);
     }
 
 
