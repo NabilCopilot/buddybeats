@@ -1,6 +1,6 @@
 
-@extends('layouts.template') <!--La plantilla que utilizo-->
-@section('content')          <!--La section que voy a rellenar-->
+@extends('layouts.template')
+@section('content')
 <div class="dash-content">
     <div class="overview">
         <div class="title">
@@ -28,5 +28,5 @@
     </div>
 </div>
 @endsection()
-    
+
 
