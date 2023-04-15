@@ -1,4 +1,7 @@
 import './bootstrap';
 
+import Alpine from 'alpinejs';
 
-console.log('testing vite');
+window.Alpine = Alpine;
+
+Alpine.start();
