@@ -28,6 +28,7 @@
                 <td>artista</td>
                 <td>album</td>
                 <td>{{ $duration }}</td>
+                <td><i class="fas fa-play"></i></td>
             </tr>
         @endforeach
     @endsection

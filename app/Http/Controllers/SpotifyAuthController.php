@@ -7,6 +7,7 @@ use GuzzleHttp\Client;
 
 class SpotifyAuthController extends Controller
 {
+
     public function redirectToProvider()
     {
         $clientId = config('services.spotify.client_id');
@@ -44,4 +45,5 @@ class SpotifyAuthController extends Controller
 
         return redirect('/spotify/playlists');
     }
+
 }

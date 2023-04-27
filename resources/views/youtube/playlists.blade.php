@@ -7,6 +7,17 @@
             </td>
             <td>Youtube</td>
             <td>{{ $playlist->getContentDetails()->getItemCount() }}</td>
+            <td>
+                @if($playlist->getSnippet()->getChannelTitle())
+                    {{ $playlist->getSnippet()->getChannelTitle() }}
+                @else
+                    YouTube
+                @endif
+            </td>
+            {{-- <td>
+                {{ ucfirst($playlist->status->privacyStatus) }}
+            </td> --}}
+            <td><i class="fas fa-play"></i></td>
         </tr>
     @endforeach
 @endsection

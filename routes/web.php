@@ -57,3 +57,5 @@ Route::get('/spotify/auth', [SpotifyAuthController::class, 'redirectToProvider']
 Route::get('/spotify/callback', [SpotifyAuthController::class, 'handleProviderCallback'])->name('spotify.callback');
 Route::get('/spotify/playlists', [SpotifyController::class, 'showPlaylists'])->name('spotify.playlists');
 Route::get('/spotify/playlists/{id}', [SpotifyController::class, 'showPlaylistTracks'])->name('spotify.tracks');
+
+Route::get('/create-playlist', [SpotifyController::class, 'createPlaylist']);
