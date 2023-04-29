@@ -10,6 +10,7 @@ use App\Http\Controllers\TransferController;
 use App\Http\Controllers\YouTubeController;
 use App\Http\Controllers\SpotifyController;
 use App\Http\Controllers\SpotifyAuthController;
+use App\Http\Controllers\SpotifyAuthControllerNEW;
 
 /*
 |--------------------------------------------------------------------------
@@ -58,4 +59,16 @@ Route::get('/spotify/callback', [SpotifyAuthController::class, 'handleProviderCa
 Route::get('/spotify/playlists', [SpotifyController::class, 'showPlaylists'])->name('spotify.playlists');
 Route::get('/spotify/playlists/{id}', [SpotifyController::class, 'showPlaylistTracks'])->name('spotify.tracks');
 
-Route::get('/create-playlist', [SpotifyController::class, 'createPlaylist']);
+// implementacion de la nueva autenticacion, flujo de codigo
+Route::get('/spotify_authorize', [SpotifyAuthControllerNEW::class, 'redirectToSpotify']);
+Route::get('/spotify_callback', [SpotifyAuthControllerNEW::class, 'handleCallback']);
+
+//spotify api destiny
+Route::get('/create_playlist', [SpotifyAuthControllerNEW::class, 'createPlaylist']);
+Route::get('/add_to_playlist/{playlistId}/{artistName}/{trackName}', [SpotifyAuthControllerNEW::class, 'addToPlaylist']);
+
+//spotify api source
+
+
+
+
