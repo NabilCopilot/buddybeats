@@ -16,6 +16,8 @@
         'resources/css/crud.css',
         'resources/js/crud.js',
         'resources/css/playlistTable.css',
+        'resources/css/app.css',
+        'resources/js/app.js',
     ])
 </head>
 <body>
@@ -33,21 +35,6 @@
                 <li>
                     <a href="{{route('home')}}">
                         <span class="link-name">Home</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="{{route('transfer')}}">
-                        <span class="link-name">Transfer</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="{{route('sync')}}">
-                        <span class="link-name">Synchronize</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="{{route('playlists.index')}}">
-                        <span class="link-name">Playlists</span>
                     </a>
                 </li>
                 <li>
@@ -81,7 +68,7 @@
                     </a>
                 </li>
             </ul>
-            
+
             <ul class="logout-mode">
                 <li><a href="#">
                     <i class="uil uil-signout"></i>
@@ -116,6 +103,21 @@
         
         {{-- <div class="text">Dashboard Sidebar</div> --}}
         <div class="dash-content">
+
+            <div class="container mx-auto py-8">
+                <div x-data="{ showModal: false }">
+                    <button @click="showModal = true" class="px-4 py-2 bg-blue-600 text-white rounded">Abrir Modal</button>
+
+                    <div x-show="showModal" class="fixed inset-0 z-50 flex items-center justify-center p-6 bg-black bg-opacity-50" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in duration-300" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0">
+                        <div class="w-3/4 md:w-1/2 bg-white rounded shadow-lg p-8" @click.away="showModal = false">
+                            <h2 class="text-2xl mb-4">Contenido del Modal</h2>
+                            <p>Este es un ejemplo de una pantalla modal utilizando Tailwind CSS y Alpine.js en Laravel 9.</p>
+                            <button @click="showModal = false" class="mt-4 px-4 py-2 bg-red-600 text-white rounded">Cerrar Modal</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
             @yield('content')
         </div>
     </section>
