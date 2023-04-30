@@ -2,11 +2,10 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PlaylistController;
-use App\Http\Controllers\SyncController;
 
-use App\Http\Controllers\TransferController;
+use App\Http\Controllers\TransferControllerNEW;
+
 use App\Http\Controllers\YouTubeController;
 use App\Http\Controllers\SpotifyController;
 use App\Http\Controllers\SpotifyAuthController;
@@ -42,8 +41,8 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
-Route::get('transfer', TransferController::class)->name('transfer');
-Route::get('sync', SyncController::class)->name('sync');
+Route::post('transfer', [TransferControllerNEW::class, 'store'])->name('transfer');
+
 
 Route::controller(PlaylistController::class)->group(function () {
     Route::get('playlists', 'index')->name('playlists.index');

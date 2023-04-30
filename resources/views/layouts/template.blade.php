@@ -110,26 +110,7 @@
         
                     <!-- Div para mostrar/ocultar -->
                     <div x-show="showDiv" class="mt-4 p-6 bg-white rounded shadow-lg" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in duration-300" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0">
-                        
-                        <!-- Contenido de las pantallas -->
-                        <template x-if="currentScreen === 1">
-                            @include('forms.form1')
-                        </template>
-                        <template x-if="currentScreen === 2">
-                            @include('forms.form2')
-                        </template>
-                        <template x-if="currentScreen === 3">
-                            @include('forms.form3')
-                        </template>
-                        <template x-if="currentScreen === 4">
-                            @include('forms.form4')
-                        </template>
-                        
-                        <!-- Controles para cambiar de pantalla -->
-                        <div class="mt-4 flex justify-between">
-                            <button @click="currentScreen = Math.max(1, currentScreen - 1)" class="px-4 py-2 bg-gray-600 text-white rounded">Anterior</button>
-                            <button @click="currentScreen = Math.min(4, currentScreen + 1)" class="px-4 py-2 bg-gray-600 text-white rounded">Siguiente</button>
-                        </div>
+                        @include('forms.transfer')
                     </div>
                 </div>
             </div>

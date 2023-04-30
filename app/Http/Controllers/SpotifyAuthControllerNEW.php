@@ -69,7 +69,7 @@ class SpotifyAuthControllerNEW extends Controller
         }
     }
 
-    public function createPlaylist(Request $request)
+    public function createPlaylist(Request $request, $data)
     {
         $accessToken = $request->session()->get('spotify_access_token');
         $userId = $this->getUserId($accessToken);
@@ -78,9 +78,9 @@ class SpotifyAuthControllerNEW extends Controller
             $response = Http::withToken($accessToken)
                 ->post("https://api.spotify.com/v1/users/{$userId}/playlists", [
                     //TODO:: esto son valores de entrada, desde la url o el dom??
-                    'name' => 'Mi nueva playlist',
-                    'description' => 'Esta es una playlist creada desde mi aplicación Laravel',
-                    'public' => true,
+                    'name' => $data['name'],
+                    'description' => $data['description'],
+                    'public' => $data['public'],
                 ]);
 
             if ($response->successful()) {
@@ -154,7 +154,6 @@ class SpotifyAuthControllerNEW extends Controller
             return null;
         }
     }
-
 
 }
 
