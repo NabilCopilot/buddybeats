@@ -27,7 +27,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/home', HomeController::class)->name('home');
+Route::get('/home', function () {
+    return view('layouts.template');
+})->name('home');
 
 Route::get('/dashboard', function () {
     return view('dashboard');

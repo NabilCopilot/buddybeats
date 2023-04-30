@@ -7,6 +7,6 @@ use Illuminate\Http\Request;
 class SyncController extends Controller
 {
     public function __invoke(){
-        return view('sync');
+        return view('transfer');
     }
 }
