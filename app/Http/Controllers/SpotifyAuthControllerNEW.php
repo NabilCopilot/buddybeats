@@ -77,7 +77,6 @@ class SpotifyAuthControllerNEW extends Controller
         if ($userId) {
             $response = Http::withToken($accessToken)
                 ->post("https://api.spotify.com/v1/users/{$userId}/playlists", [
-                    //TODO:: esto son valores de entrada, desde la url o el dom??
                     'name' => $data['name'],
                     'description' => $data['description'],
                     'public' => $data['public'],
@@ -152,6 +151,24 @@ class SpotifyAuthControllerNEW extends Controller
             return $track ? $track['id'] : null;
         } else {
             return null;
+        }
+    }
+
+    public function getMyPlaylists(Request $request)
+    {
+        $accessToken = $request->session()->get('spotify_access_token');
+
+        $response = Http::withToken($accessToken)
+            ->get("https://api.spotify.com/v1/me/playlists", [
+                'limit' => 20,
+            ]);
+
+        if ($response->successful()) {
+            $playlists = $response->json()['items'];
+            // return view('forms.transfer', ['playlists' => $playlists]);
+            return response()->json(['playlists' => $playlists]);
+        } else {
+            dd('Error al obtener las playlists, manejar este caso');
         }
     }
 

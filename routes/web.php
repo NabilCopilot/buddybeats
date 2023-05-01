@@ -4,12 +4,11 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PlaylistController;
 
-use App\Http\Controllers\TransferControllerNEW;
-
 use App\Http\Controllers\YouTubeController;
 use App\Http\Controllers\SpotifyController;
 use App\Http\Controllers\SpotifyAuthController;
 use App\Http\Controllers\SpotifyAuthControllerNEW;
+use App\Http\Controllers\TransferControllerNEW;
 
 /*
 |--------------------------------------------------------------------------
@@ -43,7 +42,6 @@ Route::middleware('auth')->group(function () {
 require __DIR__.'/auth.php';
 Route::post('transfer', [TransferControllerNEW::class, 'store'])->name('transfer');
 
-
 Route::controller(PlaylistController::class)->group(function () {
     Route::get('playlists', 'index')->name('playlists.index');
     Route::get('playlists/{service}', 'showPlaylists')->name('playlists.service');
@@ -67,6 +65,7 @@ Route::get('/spotify_callback', [SpotifyAuthControllerNEW::class, 'handleCallbac
 //spotify api destiny
 Route::get('/create_playlist', [SpotifyAuthControllerNEW::class, 'createPlaylist']);
 Route::get('/add_to_playlist/{playlistId}/{artistName}/{trackName}', [SpotifyAuthControllerNEW::class, 'addToPlaylist']);
+Route::post('/get_my_playlists', [SpotifyAuthControllerNEW::class, 'getMyPlaylists'])->name('spotify.myplaylists');
 
 //spotify api source
 
