@@ -9,6 +9,8 @@ use App\Http\Controllers\SpotifyController;
 use App\Http\Controllers\SpotifyAuthController;
 use App\Http\Controllers\SpotifyAuthControllerNEW;
 use App\Http\Controllers\TransferControllerNEW;
+use App\Http\Controllers\DeezerAuthController;
+use App\Http\Controllers\DeezerController;
 
 /*
 |--------------------------------------------------------------------------
@@ -62,13 +64,16 @@ Route::get('/spotify/playlists/{id}', [SpotifyController::class, 'showPlaylistTr
 Route::get('/spotify_authorize', [SpotifyAuthControllerNEW::class, 'redirectToSpotify']);
 Route::get('/spotify_callback', [SpotifyAuthControllerNEW::class, 'handleCallback']);
 
-//spotify api destiny
+//SPOTIFY
 Route::get('/create_playlist', [SpotifyAuthControllerNEW::class, 'createPlaylist']);
 Route::get('/add_to_playlist/{playlistId}/{artistName}/{trackName}', [SpotifyAuthControllerNEW::class, 'addToPlaylist']);
 Route::post('/get_my_playlists', [SpotifyAuthControllerNEW::class, 'getMyPlaylists'])->name('spotify.myplaylists');
 
-//spotify api source
-
+//DEEZER
+Route::get('/deezer_redirect', [DeezerAuthController::class, 'redirectToDeezer']);
+Route::get('/deezer_callback', [DeezerAuthController::class, 'handleDeezerCallback']);
+Route::get('/deezer_info', [DeezerAuthController::class, 'getUserInfo']);
+Route::get('/deezer', [DeezerAuthController::class, 'getUserInfo']);
 
 
 
