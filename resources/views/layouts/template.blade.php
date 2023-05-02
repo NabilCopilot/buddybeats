@@ -62,7 +62,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{ route('playlists.service', ['service' => 'deezer']) }}">
+                    <a href="{{ route('deezer.playlists')}}">
                         <img class="icon" src="{{ asset('assets/images/deezer_logo.png') }}">
                         <span class="link-name">Deezer</span>
                     </a>

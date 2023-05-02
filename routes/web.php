@@ -73,7 +73,12 @@ Route::post('/get_my_playlists', [SpotifyAuthControllerNEW::class, 'getMyPlaylis
 Route::get('/deezer_redirect', [DeezerAuthController::class, 'redirectToDeezer']);
 Route::get('/deezer_callback', [DeezerAuthController::class, 'handleDeezerCallback']);
 Route::get('/deezer_info', [DeezerAuthController::class, 'getUserInfo']);
-Route::get('/deezer', [DeezerAuthController::class, 'getUserInfo']);
+Route::get('/deezer', [DeezerController::class, 'getUserInfo']);
+Route::get('/create_deezer_playlist', [DeezerController::class, 'createPlaylist'])->name('create-playlist');
+Route::get('/add_track_to_playlist', [DeezerController::class, 'addTrackToPlaylist'])->name('add-track-to-playlist');
+Route::get('/deezer/playlists', [DeezerController::class, 'getUserPlaylists'])->name('deezer.playlists');
+Route::get('/deezer/playlists/{id}', [DeezerController::class, 'getPlaylistTracks'])->name('deezer.tracks');
+
 
 
 

@@ -1,5 +1,5 @@
 @extends('layouts.playlistsGrid')
-@section('data')    
+@section('data')
     @foreach ($playlists as $playlist)
         <tr>
             <td>

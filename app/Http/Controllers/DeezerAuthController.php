@@ -37,19 +37,6 @@ class DeezerAuthController extends Controller
 
         $accessToken = json_decode($response->getBody())->access_token;
         $request->session()->put('deezer_access_token', $accessToken);
-
-        // TODO: una vez q guarde el token en la sesion podria acceder a el desde cualquier controlador?
-    }
-
-    public function getUserInfo(Request $request)
-    {
-        $accessToken = $request->session()->get('deezer_access_token');
-        // $response = $this->client->get("/user/me?access_token={$accessToken}");
-        // return json_decode($response->getBody());
-
-        // Obtén todos los datos almacenados en la sesión
-        $sessionData = $request->session()->all();
-        return $accessToken;
     }
 
 }
