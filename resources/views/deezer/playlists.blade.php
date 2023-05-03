@@ -7,7 +7,7 @@
             </td>
             <td>Deezer</td>
             <td>{{ $playlist->nb_tracks }}</td>
-            <td>{{  $playlist->creator->name }}</td>
+            <td>{{ $playlist->creator->name }}</td>
             <td>{{ $playlist->public ? 'Public' : 'Private' }}</td>
             <td><i class="fas fa-play"></i></td>
         </tr>

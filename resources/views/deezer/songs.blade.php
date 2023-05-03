@@ -1,16 +1,16 @@
 @extends('layouts.songsGrid')
 
-    {{-- @section('header')
-        <img src="{{ $playlist['images'][0]['url'] }}" alt="Foto de la playlist">
+    @section('header')
+        <img src="{{ $playlist->picture_big }}" alt="Foto de la playlist">
         <div class="playlist-info">
-          <h2>{{ $playlist['name'] }}</h2>
-          <p><strong>Creador:</strong>{{ $playlist['owner']['display_name'] }}</p>
-          <p><strong>Servicio:</strong> Spotify</p>
-          <p><strong>Tipo:</strong> {{ $playlist['type'] }}</p>
-          <p><strong>Número de canciones:</strong> {{ $playlist['tracks']['total'] }} </p>
-          {{-- <p><strong>Seguidores:</strong> {{ $playlist['followers']['total'] }} </p> 
+          <h2>{{ $playlist->title }}</h2>
+          <p><strong>Creador: </strong>{{ $playlist->creator->name }}</p>
+          <p><strong>Servicio: </strong>Deezer</p>
+          <p><strong>Tipo: </strong>{{ $playlist->public ? 'Public' : 'Private' }}</p>
+          <p><strong>Número de canciones: </strong>{{ $playlist->nb_tracks }} </p>
+          {{-- <p><strong>Seguidores:</strong> {{ $playlist['followers']['total'] }} </p> --}}
         </div>
-    @endsection --}}
+    @endsection
 
     @section('data')
         @foreach ($tracks as $track)
