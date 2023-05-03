@@ -74,16 +74,40 @@
                         });
 
                         const data = await response.json();
-                        getSelectValues(data);
+                        console.log(data);
+                        getSelectValuesSpotify(data);
+                    } else if (valor === 'deezer') {
+                        const response = await fetch('/deezer/source_playlists', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'X-CSRF-TOKEN': tokenCsrf,
+                            },
+                            body: JSON.stringify({ opcion: valor }),
+                        });
+
+                        const data = await response.json();
+                        console.log(data);
+                        getSelectValuesDeezer(data);
                     }
                 },
             };
         }
 
-        function getSelectValues(data) {
+        function getSelectValuesSpotify(data) {
             select_options = [];
             data.playlists.forEach(playlist => {
                 select_options.push({ id: playlist.id, name: playlist.name, description: playlist.description, public: playlist.public });
+            });
+
+            console.log(select_options);
+            emptyAndPlaceOptions(select_options);
+        }
+        //no esta funcionando el auto llenado de los campos
+        function getSelectValuesDeezer(data) {
+            select_options = [];
+            data.playlists.forEach(playlist => {
+                select_options.push({ id: playlist.id, name: playlist.title, public: playlist.public });
             });
 
             console.log(select_options);

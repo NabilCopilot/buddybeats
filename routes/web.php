@@ -77,6 +77,7 @@ Route::get('/deezer', [DeezerController::class, 'getUserInfo']);
 Route::get('/create_deezer_playlist', [DeezerController::class, 'createPlaylist'])->name('create-playlist');
 Route::get('/add_track_to_playlist', [DeezerController::class, 'addTrackToPlaylist'])->name('add-track-to-playlist');
 Route::get('/deezer/playlists', [DeezerController::class, 'getUserPlaylists'])->name('deezer.playlists');
+Route::post('/deezer/source_playlists', [DeezerController::class, 'sourcePlaylists']);
 Route::get('/deezer/playlists/{id}', [DeezerController::class, 'getPlaylistTracks'])->name('deezer.tracks');
 
 

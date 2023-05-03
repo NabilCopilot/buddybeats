@@ -101,14 +101,23 @@ class DeezerController extends Controller
             ]
         ]);
         $playlists = json_decode($response->getBody())->data;
-        //convertir a array
-        // $playlists = json_decode(json_encode($playlists), true);
-        // dd($playlists);
 
-        // Guardar las listas de reproducción en la sesión
         $request->session()->put('deezer_playlists', $playlists);
 
         return view('deezer.playlists', ['playlists' => $playlists]);
+    }
+
+    public function sourcePlaylists(Request $request) {
+        $accessToken = $request->session()->get('deezer_access_token');
+
+        $response = $this->client->get('/user/me/playlists', [
+            'query' => [
+                'access_token' => $accessToken,
+            ]
+        ]);
+        $playlists = json_decode($response->getBody())->data;
+
+        return ['playlists' => $playlists];
     }
 
     public function getPlaylistTracks(Request $request, $playlistId)
