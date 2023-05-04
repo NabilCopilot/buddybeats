@@ -107,19 +107,6 @@ class DeezerController extends Controller
         return view('deezer.playlists', ['playlists' => $playlists]);
     }
 
-    public function sourcePlaylists(Request $request) {
-        $accessToken = $request->session()->get('deezer_access_token');
-
-        $response = $this->client->get('/user/me/playlists', [
-            'query' => [
-                'access_token' => $accessToken,
-            ]
-        ]);
-        $playlists = json_decode($response->getBody())->data;
-
-        return ['playlists' => $playlists];
-    }
-
     public function getPlaylistTracks(Request $request, $playlistId)
     {
         $accessToken = $request->session()->get('deezer_access_token');
@@ -145,4 +132,31 @@ class DeezerController extends Controller
         return view('deezer.songs', ['tracks' => $tracks, 'playlist' => $selectedPlaylist]);
     }
 
+    public function sourcePlaylists(Request $request) {
+        $accessToken = $request->session()->get('deezer_access_token');
+
+        $response = $this->client->get('/user/me/playlists', [
+            'query' => [
+                'access_token' => $accessToken,
+            ]
+        ]);
+        $playlists = json_decode($response->getBody())->data;
+
+        return ['playlists' => $playlists];
+    }
+
+    public function sourceSongsForTansferForm(Request $request, $playlistId)
+    {
+        $accessToken = $request->session()->get('deezer_access_token');
+
+        $response = $this->client->get("/playlist/{$playlistId}/tracks", [
+            'query' => [
+                'access_token' => $accessToken,
+            ]
+        ]);
+
+        $tracks = json_decode($response->getBody())->data;
+
+        return ['tracks' => $tracks];
+    }
 }
