@@ -69,7 +69,7 @@ class SpotifyAuthControllerNEW extends Controller
         }
     }
 
-    public function createPlaylist(Request $request, $data)
+    public function createPlaylist($request, $name, $description, $public)
     {
         $accessToken = $request->session()->get('spotify_access_token');
         $userId = $this->getUserId($accessToken);
@@ -77,11 +77,11 @@ class SpotifyAuthControllerNEW extends Controller
         if ($userId) {
             $response = Http::withToken($accessToken)
                 ->post("https://api.spotify.com/v1/users/{$userId}/playlists", [
-                    'name' => $data['name'],
-                    'description' => $data['description'],
-                    'public' => $data['public'],
+                    'name' => $name,
+                    'description' => $description,
+                    'public' => true,
                 ]);
-
+                dd($response);
             if ($response->successful()) {
                 $playlistData = $response->json();
 
@@ -108,30 +108,6 @@ class SpotifyAuthControllerNEW extends Controller
         }
     }
 
-    public function addToPlaylist(Request $request, $playlistId, $artistName, $trackName)
-    // TODO: cuando me llegue el artista y la cancion, codificarlos para la url
-    //si me llegan varios artistas y nombres, buscar una solucion -> arrays asociativos; cancion => artista
-    {
-        $accessToken = $request->session()->get('spotify_access_token');
-        $trackId = $this->searchTrack($accessToken, $artistName, $trackName);
-
-        if ($trackId) {
-            $response = Http::withToken($accessToken)
-                ->post("https://api.spotify.com/v1/playlists/{$playlistId}/tracks", [
-                    'uris' => ["spotify:track:{$trackId}"],
-                ]);
-
-            if ($response->successful()) {
-                dd('Canción agregada a la playlist' . $response);
-                return view('track_added', ['playlistId' => $playlistId, 'trackId' => $trackId]);
-            } else {
-                dd('Error al agregar la canción a la playlist, manejar este caso');
-            }
-        } else {
-            dd('No se encontró la canción, manejar este caso');
-        }
-    }
-
     private function searchTrack($accessToken, $artistName, $trackName)
     {
         $query = urlencode("artist:{$artistName} track:{$trackName}");
@@ -154,6 +130,24 @@ class SpotifyAuthControllerNEW extends Controller
         }
     }
 
+    public function getSpotifyTracksId($request, $songs)
+    {
+        $accessToken = $request->session()->get('spotify_access_token');
+        $trackIds = [];
+
+        foreach ($songs as $song) {
+            $trackName = $song['title'];
+            $artistName = $song['artist'];
+
+            $trackId = $this->searchTrack($accessToken, $artistName, $trackName);
+            if ($trackId) {
+                $trackIds[] = $trackId;
+            }
+        }
+
+        return $trackIds;
+    }
+
     public function getMyPlaylists(Request $request)
     {
         $accessToken = $request->session()->get('spotify_access_token');
@@ -171,6 +165,20 @@ class SpotifyAuthControllerNEW extends Controller
             dd('Error al obtener las playlists, manejar este caso');
         }
     }
+
+    public function getPlaylistTracks(Request $request, $playlistId)
+    {
+        $accessToken = $request->session()->get('spotify_access_token');
+
+        $response = Http::withToken($accessToken)
+            ->get("https://api.spotify.com/v1/playlists/{$playlistId}/tracks", [
+                'limit' => 100,
+            ]);
+
+        $tracks = $response->json()['items'];
+        return $tracks;
+    }
+
 
 }
 

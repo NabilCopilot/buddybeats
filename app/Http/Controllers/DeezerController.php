@@ -28,12 +28,9 @@ class DeezerController extends Controller
         return $sessionData;
     }
 
-    public function createPlaylist(Request $request)
+    public function createPlaylist(Request $request, $playlistTitle, $playlistDescription)
     {
         $accessToken = $request->session()->get('deezer_access_token');
-
-        $playlistTitle = 'My New Playlist';
-        $playlistDescription = 'A description of my new playlist';
 
         $response = $this->client->post('/user/me/playlists', [
             'query' => [
@@ -46,49 +43,69 @@ class DeezerController extends Controller
         return json_decode($response->getBody());
     }
 
-    public function addTrackToPlaylist(Request $request)
+    public function addTrackToPlaylist(Request $request, $playlistId, $songsId)
     {
         $accessToken = $request->session()->get('deezer_access_token');
-
-        $playlistId = '11334236044';
-        $trackTitle = 'pnl';
-        $artistName = 'blanka';
-
-        $trackId = $this->searchTrack($request, $trackTitle, $artistName);
-
-        $response = $this->client->post("/playlist/{$playlistId}/tracks", [
-            'query' => [
-                'access_token' => $accessToken,
-                'songs' => $trackId,
-            ]
-        ]);
-
-        $result = $response->getStatusCode() === 200;
-
-        if ($result) {
-            return ('Track added to playlist!');
+        $success = true;
+        $message = 'Canciones añadidas a la playlist con éxito';
+    
+        foreach ($songsId as $songId) {
+            try {
+                $response = $this->client->post("/playlist/{$playlistId}/tracks", [
+                    'query' => [
+                        'access_token' => $accessToken,
+                        'songs' => $songId,
+                    ],
+                ]);
+    
+                if ($response->getStatusCode() !== 200) {
+                    $success = false;
+                    $message = 'Error al agregar una o más canciones a la playlist';
+                    break;
+                }
+            } catch (\Exception $e) {
+                $success = false;
+                $message = 'Error al agregar una o más canciones a la playlist';
+                break;
+            }
+        }
+    
+        if ($success) {
+            return response()->json([
+                'message' => $message,
+            ]);
         } else {
-            return ('Error adding track to playlist.');
+            return response()->json([
+                'message' => $message,
+            ], 500);
         }
     }
 
-    public function searchTrack($request, $trackTitle, $artistName)
+    public function searchTrack(Request $request, $songs)
     {
-        $accessToken = $request->session()->get('deezer_access_token');
+        $ids = [];
 
-        $query = urlencode("{$trackTitle} {$artistName}");
-        $response = $this->client->get("/search", [
-            'query' => [
-                'access_token' => $accessToken,
-                'q' => $query,
-            ]
-        ]);
+        foreach ($songs as $cancion) {
+            $title = urlencode($cancion['title']);
+            $artist = urlencode($cancion['artist']);
+            $query = "{$title} {$artist}";
+    
+            $response = $this->client->get("/search", [
+                'query' => [
+                    'q' => $query
+                ]
+            ]);
 
-        $searchResults = json_decode($response->getBody());
-
-        $trackId = $searchResults->data[0]->id ?? null;
-
-        return $trackId;
+            $data = json_decode($response->getBody()->getContents(), true);
+    
+            if (isset($data['data'][0])) {
+                $ids[] = $data['data'][0]['id'];
+            } else {
+                $ids[] = null; // Si no se encuentra el ID de la canción, añade un valor null
+            }
+        }
+    
+        return $ids;
     }
 
     public function getUserPlaylists(Request $request)
