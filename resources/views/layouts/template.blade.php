@@ -70,10 +70,11 @@
             </ul>
 
             <ul class="logout-mode">
-                <li><a href="#">
+
+                <x-logout>
                     <i class="uil uil-signout"></i>
                     <span class="link-name">Logout</span>
-                </a></li>
+                </x-logout>
 
                 <li class="mode">
                     <a href="#">

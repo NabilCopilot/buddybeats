@@ -15,7 +15,7 @@
     @section('data')
         @foreach ($tracks as $track)
             <tr>
-                <td><a href="#" target="_blank">{{ $track->title }}</a></td>
+                <td><a href="https://www.deezer.com/track/{{ $track->id }}" target="_blank">{{ $track->title }}</a></td>
                 <td>{{ $track->artist->name }}</td>
                 <td>{{ $track->album->title }}</td>
                 <td>
