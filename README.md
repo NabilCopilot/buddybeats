@@ -62,3 +62,23 @@ or
    ```
 
 ## Tests
+
+Test are locate in the file tests\Feature for the integration test or tests\Unit for unit test. In this case I'm using both of them. To run them use: 
+  ```
+    php artisan test
+  ```
+If only wanna run unit tests use this command:
+  ```
+    ./vendor/bin/phpunit tests/Unit
+  ```
+Or this command for integration tests:
+  ```
+    ./vendor/bin/phpunit tests/Feature
+  ```
+
+Those packages are also needed to run the test:
+  ```
+    composer require --dev orchestra/testbench
+    composer require --dev nyholm/psr7
+    composer require --dev phpunit/phpunit
+  ```
