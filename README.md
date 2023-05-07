@@ -82,3 +82,9 @@ Those packages are also needed to run the test:
     composer require --dev nyholm/psr7
     composer require --dev phpunit/phpunit
   ```
+
+## Deploy
+
+I used this website called HEROKU, where you can host your website and database for free with some restriccions. But for this purpose it's enough. The website performance its not the greatnest but it does the job.
+
+<a href="http://sleepy-refuge-45279.herokuapp.com/">Buddy Beats</a>
