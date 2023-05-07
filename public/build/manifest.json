@@ -4,14 +4,44 @@
     "isEntry": true,
     "src": "resources/css/app.css"
   },
+  "resources/css/aside_bar.css": {
+    "file": "assets/aside_bar-94edb8b8.css",
+    "isEntry": true,
+    "src": "resources/css/aside_bar.css"
+  },
   "resources/css/crud.css": {
     "file": "assets/crud-9559ba8c.css",
     "isEntry": true,
     "src": "resources/css/crud.css"
   },
+  "resources/css/nav_bar.css": {
+    "file": "assets/nav_bar-9f76508e.css",
+    "isEntry": true,
+    "src": "resources/css/nav_bar.css"
+  },
+  "resources/css/playlistTable.css": {
+    "file": "assets/playlistTable-404f8841.css",
+    "isEntry": true,
+    "src": "resources/css/playlistTable.css"
+  },
   "resources/js/app.js": {
     "file": "assets/app-179d073e.js",
     "isEntry": true,
     "src": "resources/js/app.js"
+  },
+  "resources/js/aside_bar.js": {
+    "file": "assets/aside_bar-d6114149.js",
+    "isEntry": true,
+    "src": "resources/js/aside_bar.js"
+  },
+  "resources/js/crud.js": {
+    "file": "assets/crud-f1b14acb.js",
+    "isEntry": true,
+    "src": "resources/js/crud.js"
+  },
+  "resources/js/nav_bar.js": {
+    "file": "assets/nav_bar-eacae380.js",
+    "isEntry": true,
+    "src": "resources/js/nav_bar.js"
   }
 }
