@@ -418,7 +418,7 @@ nav.close ~ .dashboard .top{
         width: calc(100% - 250px);
     }
     .activity .activity-data{
-        overflow-X: scroll;
+        overflow-x: scroll;
     }
 }
 

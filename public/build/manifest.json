@@ -4,6 +4,11 @@
     "isEntry": true,
     "src": "resources/css/app.css"
   },
+  "resources/css/crud.css": {
+    "file": "assets/crud-9559ba8c.css",
+    "isEntry": true,
+    "src": "resources/css/crud.css"
+  },
   "resources/js/app.js": {
     "file": "assets/app-179d073e.js",
     "isEntry": true,
