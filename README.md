@@ -1,4 +1,4 @@
-<h2>🎥Video resume : <a href="https://youtu.be/"> https://youtu.be/ </a></h2>
+<h2>🎥Video resume : <a href="https://www.youtube.com/watch?v=CenBylbYY6A&ab_channel=NabilAfkir"> BuddyBeats </a></h2>
 
 
 ## About BuddyBeats
