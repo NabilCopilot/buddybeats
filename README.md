@@ -6,8 +6,9 @@
 Is a page where you can have all your music streaming services conected. All your playlist in only one place and if is not enough, you can also transfer them from one service to other.
 
 ## Analysis
+<a href="https://docs.google.com/document/d/1pkzQJdfCdvpglHr1jhHRjcWobXpNqxonPedqkjekR-s/edit?usp=sharing">Analysis</a>
 ## Design
-
+<a href="https://docs.google.com/document/d/1JTJccI2dxll-TmmJRV3HeV39zENF7cDNJ7ZkQVA4dog/edit?usp=sharing">Design</a>
 ## Getting Started
 
 ### Prerequisites
